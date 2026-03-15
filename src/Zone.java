@@ -1,6 +1,7 @@
 import java.util.HashMap;
-
 /**
+ * Author: Grayson M
+ * 
  * The Zone class represents a zone a plant can grow in. It is defined by a zone number, a low temperature in Fahrenheit, and a high temperature in Fahrenheit. 
  * The class provides getters for all variables and a static method to initialize a map of zones for use in other classes.
  */
@@ -22,12 +23,12 @@ public class Zone {
     private final int highTempF;
 
     /**
-     * Constructor for the Zone class.
+     * Private constructor for the Zone class.
      * @param zoneNumber
      * @param lowTempF
      * @param highTempF
      */
-    public Zone(int zoneNumber, int lowTempF, int highTempF) {
+    private Zone(int zoneNumber, int lowTempF, int highTempF) {
         this.zoneNumber = zoneNumber;
         this.lowTempF = lowTempF;
         this.highTempF = highTempF;

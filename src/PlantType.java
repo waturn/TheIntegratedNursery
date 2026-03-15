@@ -1,4 +1,6 @@
 /**
+ * Author: Grayson M
+ * 
  * Enum to represent different plant types.
  */
 public enum PlantType {

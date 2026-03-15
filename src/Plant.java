@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.function.Predicate;
 
 /**
+ * Author: Grayson M (half of the file)
+ * 
  * The Plant class represents a plant with its genus name, common name, plant group, date first introduced, and zones it can grow in.
  * Each plant is assigned a unique ID starting from 4901.
  * The class provides getters and setters for all variables and a method for assigning zones to the plant.
@@ -65,7 +67,7 @@ public class Plant {
      * Getters and setters for all variables.
      * @return
      */
-    private long getId() {
+    public long getId() {
         return id;
     }
     private String getGenusSpecies() {
@@ -77,7 +79,7 @@ public class Plant {
     private PlantType getPlantGroup() {
         return plantGroup;
     }
-    private LocalDate getDateIntroduced() {
+    public LocalDate getDateIntroduced() {
         return dateIntroduced;
     }
     private HashMap<Integer, Zone> getZones() {
