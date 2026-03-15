@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 /**
  * The Plant class represents a plant with its genus name, common name, plant group, date first introduced, and zones it can grow in.
@@ -116,4 +117,83 @@ public class Plant {
             zones.put(zoneNumber, z);
         }
     }
+
+    
+    //All Below; Author is Stephen T. :) 
+    @Override
+    public String toString(){
+        if (genusSpecies == null || genusSpecies.isBlank()) {
+        return commonName + " (not scientific)";
+    }
+
+     String[] parts = genusSpecies.split(" ");
+    String genus = parts[0];
+
+    return commonName + " (" + genus + ")";
+    }
+
+    public boolean growInZone(int zoneNumber){
+        return zones.containsKey(zoneNumber);
+    }
+
+    //validation methods for the genus species and common name variables
+    public static boolean validateGenusSpecies(String name){
+        if(name == null){
+            System.out.println("Genus and Species cannot be null");
+            return false;
+        }
+
+        if(name.length() < 7 || name.length() > 39){
+            System.out.println("Genus and species must be between 7 and 31 characters");
+            return false;
+        }
+
+        if(!name.contains(" ")){
+            System.out.println("Genus and species must have a space between them");
+            return false;
+        }
+
+        char firstLetter = name.charAt(0);
+
+        if(!Character.isUpperCase(firstLetter)){
+            System.out.println("Genus must start with a capital letter");
+            return false;
+        }
+        return true;
+    }    
+
+    //validation method for the common name variable
+    public static boolean validateCommonName(String name){
+        if(name == null || name.equals("")){
+        System.out.println("Common name cannot be null");
+        return false;
+    }
+
+        char firstLetter = name.charAt(0);
+
+        if(!Character.isUpperCase(firstLetter)){
+        System.out.println("Common name must start with a capital letter");
+        return false;
+    }
+
+        return true;
 }
+
+    // A static map of evaluators for the Plant class.
+    public static final HashMap<String, Predicate<Plant>> evaluators = createEvaluators();
+
+    private static HashMap<String, Predicate<Plant>> createEvaluators() {
+        HashMap<String, Predicate<Plant>> map = new HashMap<>();
+        map.put("most_experienced", plant -> {
+            return plant.getDateIntroduced().isBefore(LocalDate.now().minusYears(20));
+        });
+
+        map.put("least_experienced", plant -> {
+            return plant.getDateIntroduced().isAfter(LocalDate.now().minusYears(5));
+        });
+
+        return map;
+    }
+
+}
+
